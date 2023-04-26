@@ -3,16 +3,106 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AJAX Project</title>
+  <title>Brewery Finder - AJAX Project</title>
   <link rel="icon" href="images/favicon.ico">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
+    <div class="header-background">
+      <h1 class="header-name">BEER RUN</h1>
+      <p class="subheader">Thirsty? We can fix that.</p>
+    </div>
   </header>
   <main>
+    <div class="container home-page hidden">
+      <div class="row">
+        <div class="col-full">
+          <h2 class="intro">Let us help you find your next favorite brewery.</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-full">
+          <img src="./images/beerRunGlasses.png" class="home-photo" alt="glasses of beer on a counter">
+        </div>
+      </div>
+      <div class="row">
+        <form class="form-city">
+          <div class="col-full">
+            <h2 class="city-intro">Find a brewery in your city, or any city.</h2>
+            <label for="city-name">City Name</label>
+            <input type="text" name="city-name" class="textbox">
+          </div>
+        </form>
+      </div>
+      <div class="row">
+        <form class="form-name">
+          <div class="col-full">
+            <h2 class="name-intro">Know what it's called? Let's find it.</h2>
+            <label for="brewery-name">Brewery Name</label>
+            <input type="text" name="brewery-name" class="textbox">
+          </div>
+        </form>
+      </div>
+      <div class="row">
+        <div class="col-full">
+          <h2 class="random-intro">Feelin' like Marco Polo?</h2>
+          <button class="random-btn">Discover a new brewery</button>
+        </div>
+      </div>
+      <div class="row" id="random-row">
+        <div class="col-half">
+          <h2 class="saved-intro">Been here before?</h2>
+        </div>
+        <div class="col-half">
+          <button class="saved-btn">Saved breweries list</button>
+        </div>
+      </div>
+    </div>
+    <div class="container name-page">
+      <div class="row">
+        <div class="col-full">
+          <h2 class="name-intro">Breweries that match your search</h2>
+          <p class="url-p">Click on the URL to learn more</p>
+        </div>
+      </div>
+      <div class="brewery-list">
+        <ul>
+          <li>
+            <div class="br-header">
+              <h3>Ambitious Ales</h3>
+              <a><span class="plus">&plus;</span></a>
+            </div>
+            <p>
+              Address:
+              <span class="address1">4019 Atlantic Ave</span>,
+              <span class="city">Long Beach</span>,
+              <span class="state">California</span>,
+              <span class="postal">90807</span>
+            </p>
+            <p>
+              Call: (
+              <span class="phone1-3">714</span>)
+              <span class="phone2-3">296</span>-
+              <span class="phone3-4">2550</span>
+            </p>
+            <p>
+              Website:
+              <span class="website">http://www.ambitiousales.com</span>
+            </p>
+            <p>
+              Type:
+              <span class="type">Small</span>
+            </p>
+          </li>
+        </ul>
+      </div>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>

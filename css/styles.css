@@ -1,0 +1,116 @@
+.hidden {
+  display: none !important;
+}
+
+* {
+  font-family: Teko, sans-serif;
+}
+
+.header-background {
+  background-image: url("../images/beerRun\ bg\ \(1\).jpeg");
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: #faf0de;
+}
+
+.header-name,
+.subheader {
+  margin: 0;
+}
+
+.header-name {
+  font-size: 60px;
+  height: 4rem;
+}
+
+.subheader {
+  font-size: 20px;
+}
+
+.container {
+  margin: 0 1rem;
+}
+
+/* HOME PAGE STYLES */
+
+.intro {
+  font-size: 27px;
+  text-align: center;
+  width: 304px;
+  padding: 0 1rem;
+}
+
+.home-photo {
+  width: 90%;
+  border-radius: 8px;
+}
+
+.city-intro,
+.name-intro,
+.random-intro {
+  margin-bottom: 0;
+}
+
+.textbox {
+  border: 2px solid #ffca0f;
+  border-radius: 8px;
+  height: 1.8rem;
+  width: 90%;
+}
+
+button {
+  height: 2.6rem;
+  width: 10rem;
+  color: white;
+  border-radius: 8px;
+  font-size: 20px;
+}
+
+.random-btn {
+  background-color: #ffca0f;
+  border: 1px solid #ffca0f;
+}
+
+.saved-btn {
+  background-color: #ad0000;
+  border: 1px solid #ad0000;
+}
+
+.random-row {
+  display: flex;
+  justify-content: center;
+}
+
+.saved-intro,
+.saved-btn {
+  margin: 1rem;
+}
+
+/* NAME SEARCH PAGE STYLES */
+
+h3 {
+  margin: 0;
+  width: 95%;
+  font-size: 23px;
+}
+
+ul {
+  list-style: none;
+  padding: 0 1rem;
+}
+
+.name-intro {
+  font-size: 31px;
+  height: 2.4rem;
+}
+
+.plus {
+  font-size: 50px;
+  height: 18px;
+  display: block;
+}
+
+p {
+  margin: 0;
+}
