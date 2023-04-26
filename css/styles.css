@@ -114,3 +114,7 @@ ul {
 p {
   margin: 0;
 }
+
+.description {
+  font-size: 18px;
+}

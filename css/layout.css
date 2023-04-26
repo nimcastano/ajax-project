@@ -23,3 +23,7 @@ header {
   display: flex;
   justify-content: space-between;
 }
+
+li {
+  margin-bottom: 2rem;
+}
