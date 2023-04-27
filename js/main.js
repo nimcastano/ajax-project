@@ -12,19 +12,31 @@ $return.addEventListener('click', e => {
   $nameForm.reset();
   $cityForm.reset();
 
+  const $brNameList = document.querySelector('.br-name-list');
+  $brNameList.remove();
+
 });
+
+const $brList = document.querySelector('.brewery-list');
 
 $brName.addEventListener('keydown', function (e) {
   if (event.code === 'Enter') {
     event.preventDefault();
+
+    const $brNameList = document.createElement('ul');
+    $brNameList.className = 'br-name-list';
+
     const nameSearch = $brName.value;
     const xhr = new XMLHttpRequest();
     xhr.open('GET', 'https://api.openbrewerydb.org/v1/breweries?by_name=' + nameSearch);
     xhr.responseType = 'json';
     xhr.addEventListener('load', function () {
       for (let i = 0; i < xhr.response.length; i++) {
-        renderBrList(xhr.response[i]);
+        $brNameList.append(renderBrList(xhr.response[i]));
       }
+
+      $brList.append($brNameList);
+
     });
     xhr.send();
 
@@ -33,8 +45,6 @@ $brName.addEventListener('keydown', function (e) {
 
   }
 });
-
-const $brList = document.querySelector('.br-list');
 
 function renderBrList(brewery) {
   const $li = document.createElement('li');
@@ -95,6 +105,5 @@ function renderBrList(brewery) {
 
     $li.appendChild($type);
   }
-
-  $brList.appendChild($li);
+  return $li;
 }
