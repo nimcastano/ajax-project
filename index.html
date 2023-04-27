@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Brewery Finder - AJAX Project</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="icon" href="images/favicon.ico">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
@@ -15,7 +18,7 @@
 <body>
   <header>
     <div class="header-background">
-      <h1 class="header-name">BEER RUN</h1>
+      <a class="return"><h1 class="header-name">BEER RUN</h1></a>
       <p class="subheader">Thirsty? We can fix that.</p>
     </div>
   </header>
@@ -67,7 +70,7 @@
     <div class="container name-page">
       <div class="row">
         <div class="col-full">
-          <h2 class="name-intro">Breweries that match your search</h2>
+          <h2 class="name-header">Breweries that match your search</h2>
           <p class="url-p">Click on the URL to learn more</p>
         </div>
       </div>
@@ -96,6 +99,13 @@
             </p>
           </li>
         </ul>
+      </div>
+      <div class="page-turner">
+        <h3 class="page-page">
+          <span>
+            <i id="page-back" class="fa-solid fa-chevron-left invisible"></i> Page <i id="page-fwd" class="fa-solid fa-chevron-right"></i>
+          </span>
+        </h3>
       </div>
     </div>
   </main>

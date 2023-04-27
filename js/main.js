@@ -1,9 +1,39 @@
-// const $nameForm = document.querySelector('form-city');
+const $homePage = document.querySelector('.home-page');
+const $namePage = document.querySelector('.name-page');
 const $brName = document.querySelector('#brewery-name');
+const $nameForm = document.querySelector('.form-name');
+const $cityForm = document.querySelector('.form-city');
+
+const $return = document.querySelector('.return');
+$return.addEventListener('click', e => {
+  $homePage.className = 'container home-page';
+  $namePage.className = 'container name-page hidden';
+
+  $nameForm.reset();
+  $cityForm.reset();
+
+});
 
 $brName.addEventListener('keydown', function (e) {
   if (event.code === 'Enter') {
     event.preventDefault();
+    const nameSearch = $brName.value;
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://api.openbrewerydb.org/v1/breweries?by_name=' + nameSearch);
+    xhr.responseType = 'json';
+    xhr.addEventListener('load', function () {
+      for (let i = 0; i < xhr.response.length; i++) {
+        renderBrList(xhr.response[i]);
+      }
+    });
+    xhr.send();
+
+    $homePage.classList.add('hidden');
+    $namePage.classList.remove('hidden');
+
+    if (xhr.response < 10) {
+      document.querySelector('.page-turner').className = 'page-turner hidden';
+    }
   }
 });
 
@@ -66,16 +96,3 @@ function renderBrList(brewery) {
 
   $brList.appendChild($li);
 }
-
-const xhr = new XMLHttpRequest();
-xhr.open('GET', 'https://api.openbrewerydb.org/v1/breweries?by_name=ballast&per_page=3');
-xhr.responseType = 'json';
-xhr.addEventListener('load', function () {
-  // console.log(xhr.status);
-  // console.log(xhr.response);
-  for (let i = 0; i < xhr.response.length; i++) {
-    renderBrList(xhr.response[i]);
-  }
-});
-
-xhr.send();

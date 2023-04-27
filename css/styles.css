@@ -24,6 +24,10 @@
   height: 4rem;
 }
 
+.header-name:hover {
+  cursor: pointer;
+}
+
 .subheader {
   font-size: 20px;
 }
@@ -100,9 +104,9 @@ ul {
   padding: 0 1rem;
 }
 
-.name-intro {
+.name-header {
   font-size: 31px;
-  height: 2.4rem;
+  height: 1rem;
 }
 
 .plus {
@@ -117,4 +121,28 @@ p {
 
 .description {
   font-size: 18px;
+}
+
+.page-turner {
+  position: fixed;
+  bottom: 0;
+  left: -5%;
+  height: 4rem;
+  width: 110%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+
+.page-page {
+  text-align: center;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.br-list {
+  margin-bottom: 4rem;
 }
