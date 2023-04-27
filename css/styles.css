@@ -166,4 +166,9 @@ p {
   .url-p {
     font-size: 22px;
   }
+
+  .intro {
+    font-size: 40px;
+    width: 25rem;
+  }
 }
