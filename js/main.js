@@ -81,7 +81,12 @@ function renderBrList(brewery) {
   if (brewery.website_url != null) {
     const $website = document.createElement('p');
     $website.className = 'description';
-    $website.textContent = `Website: ${brewery.website_url}`;
+    $website.textContent = 'Website: ';
+    const $url = document.createElement('a');
+    $url.setAttribute('href', brewery.website_url);
+    $url.textContent = brewery.website_url;
+
+    $website.appendChild($url);
 
     $li.appendChild($website);
   }

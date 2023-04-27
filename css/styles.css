@@ -63,6 +63,13 @@
   width: 90%;
 }
 
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 button {
   height: 2.6rem;
   width: 10rem;
@@ -145,4 +152,14 @@ p {
 
 .br-list {
   margin-bottom: 4rem;
+}
+
+@media (min-width: 900px) {
+  .name-header {
+    font-size: 45px;
+  }
+
+  .url-p {
+    font-size: 22px;
+  }
 }

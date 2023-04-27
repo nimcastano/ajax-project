@@ -27,3 +27,45 @@ header {
 li {
   margin-bottom: 2rem;
 }
+
+.img-col {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .col-full {
+    width: 50%;
+  }
+
+  .img-col {
+    display: block;
+    width: 50%;
+    position: fixed;
+    top: 30%;
+    left: 5%;
+  }
+
+  #name-image {
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  .brewery-list {
+    position: relative;
+    left: 55%;
+    top: 8rem;
+  }
+
+  .name-srch-hdr {
+    position: fixed;
+    top: 12%;
+    left: 5%;
+    width: 50%;
+  }
+
+  header {
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+  }
+}
