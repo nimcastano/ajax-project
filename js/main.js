@@ -31,9 +31,6 @@ $brName.addEventListener('keydown', function (e) {
     $homePage.classList.add('hidden');
     $namePage.classList.remove('hidden');
 
-    if (xhr.response < 10) {
-      document.querySelector('.page-turner').className = 'page-turner hidden';
-    }
   }
 });
 
