@@ -1,0 +1,73 @@
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+}
+
+.container {
+  position: relative;
+  top: 5.8rem;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.col-full {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 90vw;
+}
+
+.br-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+li {
+  margin-bottom: 2rem;
+}
+
+.img-col {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .col-full {
+    width: 50%;
+  }
+
+  .img-col {
+    display: block;
+    width: 50%;
+    position: fixed;
+    top: 30%;
+    left: 5%;
+  }
+
+  #name-image {
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  .brewery-list {
+    position: relative;
+    left: 55%;
+    top: 4rem;
+  }
+
+  .name-srch-hdr {
+    position: fixed;
+    top: 12%;
+    left: 5%;
+    width: 50%;
+  }
+}
