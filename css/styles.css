@@ -28,7 +28,9 @@ a {
   height: 4rem;
 }
 
-.header-name:hover {
+.header-name:hover,
+.random-btn,
+.saved-btn {
   cursor: pointer;
 }
 
