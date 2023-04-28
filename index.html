@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,10 +16,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400&display=swap" rel="stylesheet">
 </head>
+
 <body>
   <header>
     <div class="header-background">
-      <a href="#" class="return"><h1 class="header-name">BEER RUN</h1></a>
+      <a href="#" class="return">
+        <h1 class="header-name">BEER RUN</h1>
+      </a>
       <p class="subheader">Thirsty? We can fix that.</p>
     </div>
   </header>
@@ -75,13 +79,28 @@
         </div>
       </div>
       <div class="row img-col">
-        <img id="name-image" src="./images/youngadultsdrinkingbeer.jpg" alt="young adults drinking beer">
+        <img id="name-image" class="deco-image" src="./images/youngadultsdrinkingbeer.jpg" alt="young adults drinking beer">
       </div>
-      <div class="brewery-list col-full">
+      <div class="name-list brewery-list col-full">
+      </div>
+    </div>
+    <div class="container random-page hidden">
+      <div class="row">
+        <div class="col-full">
+          <h2 class="random-intro">Congratulations!</h2>
+          <h3 class="random-subheader">You found a new drinking spot.</h3>
+          <p class="url-p">Click on the URL to learn more</p>
+        </div>
+      </div>
+      <div class="row img-col" id="rndm-img-col">
+        <img id="random-image" class="deco-image" src="https://www.bcj.com/wp-content/uploads/2022/09/220620_42661_inddprint-scaled.jpg" alt="empty brewery taproom with high ceilings">
+      </div>
+      <div class="rndm-list brewery-list col-full">
       </div>
     </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
+
 </html>

@@ -42,7 +42,8 @@ a {
 
 /* HOME PAGE STYLES */
 
-.intro {
+.intro,
+.random-intro {
   font-size: 27px;
   text-align: center;
   width: 304px;
@@ -124,6 +125,8 @@ ul {
   font-size: 50px;
   height: 18px;
   display: block;
+  position: relative;
+  bottom: 1rem;
 }
 
 p {
@@ -150,11 +153,7 @@ p {
   text-align: center;
 }
 
-.invisible {
-  visibility: hidden;
-}
-
-.br-name-list {
+.br-list {
   margin-bottom: 4rem;
 }
 
@@ -167,7 +166,8 @@ p {
     font-size: 22px;
   }
 
-  .intro {
+  .intro,
+  .random-intro {
     font-size: 40px;
     width: 25rem;
   }
