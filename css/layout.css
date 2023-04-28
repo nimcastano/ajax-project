@@ -78,4 +78,12 @@ li {
     left: 5%;
     width: 50%;
   }
+
+  #rndm-srch-hdr {
+    left: 10%;
+  }
+
+  #rndm-list {
+    top: 15rem;
+  }
 }
