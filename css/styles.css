@@ -45,7 +45,7 @@ a {
 /* HOME PAGE STYLES */
 
 .intro,
-.random-intro {
+.rndm-intro {
   font-size: 27px;
   text-align: center;
   width: 304px;
@@ -59,7 +59,7 @@ a {
 
 .city-intro,
 .name-intro,
-.random-intro {
+.rndm-intro {
   margin-bottom: 0;
 }
 
@@ -169,7 +169,7 @@ p {
   }
 
   .intro,
-  .random-intro {
+  .rndm-intro {
     font-size: 40px;
     width: 25rem;
   }
