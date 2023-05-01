@@ -1,5 +1,6 @@
 const $homePage = document.querySelector('.home-page');
 const $namePage = document.querySelector('.name-page');
+const $randomPage = document.querySelector('.random-page');
 const $brName = document.querySelector('#brewery-name');
 const $nameForm = document.querySelector('.form-name');
 const $cityForm = document.querySelector('.form-city');
@@ -8,23 +9,24 @@ const $return = document.querySelector('.return');
 $return.addEventListener('click', e => {
   $homePage.className = 'container home-page';
   $namePage.className = 'container name-page hidden';
+  $randomPage.className = 'container random-page hidden';
 
   $nameForm.reset();
   $cityForm.reset();
 
-  const $brNameList = document.querySelector('.br-name-list');
-  $brNameList.remove();
+  const $brList = document.querySelector('.br-list');
+  $brList.remove();
 
 });
 
-const $brList = document.querySelector('.brewery-list');
+const $brNameList = document.querySelector('.name-list');
 
 $brName.addEventListener('keydown', function (e) {
   if (event.code === 'Enter') {
     event.preventDefault();
 
-    const $brNameList = document.createElement('ul');
-    $brNameList.className = 'br-name-list';
+    const $brList = document.createElement('ul');
+    $brList.className = 'br-list';
 
     const nameSearch = $brName.value;
     const xhr = new XMLHttpRequest();
@@ -32,10 +34,10 @@ $brName.addEventListener('keydown', function (e) {
     xhr.responseType = 'json';
     xhr.addEventListener('load', function () {
       for (let i = 0; i < xhr.response.length; i++) {
-        $brNameList.append(renderBrList(xhr.response[i]));
+        $brList.append(renderBrList(xhr.response[i]));
       }
 
-      $brList.append($brNameList);
+      $brNameList.append($brList);
 
     });
     xhr.send();
@@ -107,3 +109,32 @@ function renderBrList(brewery) {
   }
   return $li;
 }
+
+// random button
+
+const $brRandomList = document.querySelector('.rndm-list');
+const $randomBtn = document.querySelector('.random-btn');
+
+$randomBtn.addEventListener('click', e => {
+
+  const $brList = document.createElement('ul');
+  $brList.className = 'br-list';
+
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://api.openbrewerydb.org/v1/breweries/random');
+  xhr.responseType = 'json';
+
+  xhr.addEventListener('load', function () {
+
+    $brList.append(renderBrList(xhr.response[0]));
+
+    $brRandomList.append($brList);
+  });
+
+  xhr.send();
+
+  $homePage.className = 'container home-page hidden';
+  $namePage.className = 'container name-page hidden';
+  $randomPage.className = 'container random-page';
+
+});
