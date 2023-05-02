@@ -169,8 +169,10 @@ p {
   }
 
   .intro,
-  .rndm-intro {
+  .rndm-intro,
+  .city-intro {
     font-size: 40px;
     width: 25rem;
+    text-align: center;
   }
 }
