@@ -127,8 +127,8 @@ ul {
 
 .plus {
   font-size: 50px;
-  height: 18px;
-  display: block;
+  height: 25px;
+  width: 25px;
   position: relative;
   bottom: 1rem;
 }

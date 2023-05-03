@@ -10,6 +10,7 @@ const $cityForm = document.querySelector('.form-city');
 const $brNameList = document.querySelector('#name-list');
 const $brCityList = document.querySelector('#city-list');
 const $brRandomList = document.querySelector('#rndm-list');
+const $modals = document.querySelectorAll('.modal-container');
 
 const $return = document.querySelector('.return');
 $return.addEventListener('click', e => {
@@ -31,6 +32,10 @@ $return.addEventListener('click', e => {
   while ($brCityList.firstChild) {
     $brCityList.removeChild($brCityList.firstChild);
   }
+
+  $modals.forEach(el => {
+    el.className = 'modal-container hidden';
+  });
 
 });
 
@@ -178,4 +183,10 @@ $savedBtn.addEventListener('click', e => {
   $favesPage.className = 'container faves-page';
 });
 
-// plus button
+// plus buttons
+
+// const $pluses = document.querySelectorAll('.plus');
+
+// $pluses.forEach(el => {
+//   el.addEventListener()
+// })
