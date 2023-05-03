@@ -1,32 +1,40 @@
 const $homePage = document.querySelector('.home-page');
 const $namePage = document.querySelector('.name-page');
 const $randomPage = document.querySelector('.random-page');
+const $cityPage = document.querySelector('.city-page');
 const $brName = document.querySelector('#brewery-name');
+const $brCity = document.querySelector('#city-name');
 const $nameForm = document.querySelector('.form-name');
 const $cityForm = document.querySelector('.form-city');
+const $brNameList = document.querySelector('#name-list');
+const $brCityList = document.querySelector('#city-list');
+const $brRandomList = document.querySelector('#rndm-list');
 
 const $return = document.querySelector('.return');
 $return.addEventListener('click', e => {
   $homePage.className = 'container home-page';
   $namePage.className = 'container name-page hidden';
   $randomPage.className = 'container random-page hidden';
+  $cityPage.className = 'container city-page hidden';
 
   $nameForm.reset();
   $cityForm.reset();
 
-  const $brList = document.querySelector('.br-list');
-  $brList.remove();
+  while ($brNameList.firstChild) {
+    $brNameList.removeChild($brNameList.firstChild);
+  }
+  while ($brRandomList.firstChild) {
+    $brRandomList.removeChild($brRandomList.firstChild);
+  }
+  while ($brCityList.firstChild) {
+    $brCityList.removeChild($brCityList.firstChild);
+  }
 
 });
-
-const $brNameList = document.querySelector('.name-list');
 
 $brName.addEventListener('keydown', function (e) {
   if (event.code === 'Enter') {
     event.preventDefault();
-
-    const $brList = document.createElement('ul');
-    $brList.className = 'br-list';
 
     const nameSearch = $brName.value;
     const xhr = new XMLHttpRequest();
@@ -34,10 +42,8 @@ $brName.addEventListener('keydown', function (e) {
     xhr.responseType = 'json';
     xhr.addEventListener('load', function () {
       for (let i = 0; i < xhr.response.length; i++) {
-        $brList.append(renderBrList(xhr.response[i]));
+        $brNameList.append(renderBrList(xhr.response[i]));
       }
-
-      $brNameList.append($brList);
 
     });
     xhr.send();
@@ -45,6 +51,31 @@ $brName.addEventListener('keydown', function (e) {
     $homePage.classList.add('hidden');
     $namePage.classList.remove('hidden');
 
+  }
+});
+
+$brCity.addEventListener('keydown', e => {
+  if (event.code === 'Enter') {
+    event.preventDefault();
+
+    let citySearch = $brCity.value;
+    citySearch = citySearch[0].toUpperCase() + citySearch.slice(1, citySearch.length).toLowerCase();
+    const $cityIntro = document.querySelector('.city-page-intro');
+    $cityIntro.textContent = `Breweries in ${citySearch}`;
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://api.openbrewerydb.org/v1/breweries?per_page=10&page=1&by_city=' + citySearch);
+    xhr.responseType = 'json';
+    xhr.addEventListener('load', function () {
+      for (let i = 0; i < xhr.response.length; i++) {
+        $brCityList.append(renderBrList(xhr.response[i]));
+      }
+
+    });
+    xhr.send();
+
+    $homePage.classList.add('hidden');
+    $cityPage.classList.remove('hidden');
   }
 });
 
@@ -112,7 +143,6 @@ function renderBrList(brewery) {
 
 // random button
 
-const $brRandomList = document.querySelector('.rndm-list');
 const $randomBtn = document.querySelector('.random-btn');
 
 $randomBtn.addEventListener('click', e => {
@@ -126,9 +156,7 @@ $randomBtn.addEventListener('click', e => {
 
   xhr.addEventListener('load', function () {
 
-    $brList.append(renderBrList(xhr.response[0]));
-
-    $brRandomList.append($brList);
+    $brRandomList.append(renderBrList(xhr.response[0]));
   });
 
   xhr.send();
