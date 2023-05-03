@@ -177,3 +177,5 @@ $savedBtn.addEventListener('click', e => {
   $homePage.className = 'container home-page hidden';
   $favesPage.className = 'container faves-page';
 });
+
+// plus button

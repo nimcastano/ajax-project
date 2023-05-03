@@ -161,6 +161,49 @@ p {
   margin-bottom: 4rem;
 }
 
+.add-popup {
+  width: 301px;
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 2px solid#ad0000;
+  background-color: #faf0de;
+  border-radius: 8px;
+  padding: 0.5rem;
+}
+
+.modal-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgb(102 102 102 / 55%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+}
+
+.modal-col-full {
+  width: 100%;
+}
+
+.add-intro {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.modal-btns {
+  justify-content: space-between;
+  margin: 0 1rem;
+  font-size: 23px;
+}
+
+.add-it {
+  color: #ad0000;
+}
+
 @media (min-width: 900px) {
   .name-header {
     font-size: 45px;
