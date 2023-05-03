@@ -183,6 +183,7 @@ p {
   align-items: center;
   top: 0;
   left: 0;
+  z-index: 999;
 }
 
 .modal-col-full {
@@ -202,6 +203,10 @@ p {
 
 .add-it {
   color: #ad0000;
+}
+
+.faves-list {
+  left: 32%;
 }
 
 @media (min-width: 900px) {

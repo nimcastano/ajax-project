@@ -10,15 +10,18 @@ const $cityForm = document.querySelector('.form-city');
 const $brNameList = document.querySelector('#name-list');
 const $brCityList = document.querySelector('#city-list');
 const $brRandomList = document.querySelector('#rndm-list');
-const $modals = document.querySelectorAll('.modal-container');
+const $addModal = document.querySelector('.add-modal');
+let $plus;
 
 const $return = document.querySelector('.return');
+
 $return.addEventListener('click', e => {
   $homePage.className = 'container home-page';
   $namePage.className = 'container name-page hidden';
   $randomPage.className = 'container random-page hidden';
   $cityPage.className = 'container city-page hidden';
   $favesPage.className = 'container faves-page hidden';
+  $addModal.className = 'add-modal modal-container hidden';
 
   $nameForm.reset();
   $cityForm.reset();
@@ -32,10 +35,6 @@ $return.addEventListener('click', e => {
   while ($brCityList.firstChild) {
     $brCityList.removeChild($brCityList.firstChild);
   }
-
-  $modals.forEach(el => {
-    el.className = 'modal-container hidden';
-  });
 
 });
 
@@ -57,7 +56,6 @@ $brName.addEventListener('keydown', function (e) {
 
     $homePage.classList.add('hidden');
     $namePage.classList.remove('hidden');
-
   }
 });
 
@@ -185,8 +183,25 @@ $savedBtn.addEventListener('click', e => {
 
 // plus buttons
 
-// const $pluses = document.querySelectorAll('.plus');
+document.addEventListener('click', e => {
+  if (e.target.className === 'plus') {
+    $plus = e.target;
+    $addModal.classList.remove('hidden');
+  }
+});
 
-// $pluses.forEach(el => {
-//   el.addEventListener()
-// })
+const $nope = document.querySelector('.nope');
+
+$nope.addEventListener('click', e => {
+  $addModal.className = 'add-modal modal-container hidden';
+});
+
+const $addIt = document.querySelector('.add-it');
+const $favesList = document.querySelector('#faves-list');
+
+$addIt.addEventListener('click', e => {
+  // console.log($plus.closest('li'));
+  data.entries.push($plus.closest('li'));
+  $favesList.append($plus.closest('li'));
+  $addModal.classList.add('hidden');
+});
