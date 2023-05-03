@@ -66,7 +66,7 @@ $brCity.addEventListener('keydown', e => {
     $cityIntro.textContent = `Breweries in ${citySearch}`;
 
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'https://api.openbrewerydb.org/v1/breweries?by_city=' + citySearch);
+    xhr.open('GET', 'https://api.openbrewerydb.org/v1/breweries?per_page=10&page=1&by_city=' + citySearch);
     xhr.responseType = 'json';
     xhr.addEventListener('load', function () {
       for (let i = 0; i < xhr.response.length; i++) {
