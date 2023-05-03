@@ -60,7 +60,8 @@ a {
 .city-intro,
 .name-intro,
 .rndm-intro,
-.city-page-intro {
+.city-page-intro,
+.faves-page-intro {
   margin-bottom: 0;
 }
 
@@ -171,7 +172,8 @@ p {
 
   .intro,
   .rndm-intro,
-  .city-page-intro {
+  .city-page-intro,
+  .faves-page-intro {
     font-size: 40px;
     width: 25rem;
     text-align: center;

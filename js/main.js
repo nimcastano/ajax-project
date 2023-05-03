@@ -2,6 +2,7 @@ const $homePage = document.querySelector('.home-page');
 const $namePage = document.querySelector('.name-page');
 const $randomPage = document.querySelector('.random-page');
 const $cityPage = document.querySelector('.city-page');
+const $favesPage = document.querySelector('.faves-page');
 const $brName = document.querySelector('#brewery-name');
 const $brCity = document.querySelector('#city-name');
 const $nameForm = document.querySelector('.form-name');
@@ -16,6 +17,7 @@ $return.addEventListener('click', e => {
   $namePage.className = 'container name-page hidden';
   $randomPage.className = 'container random-page hidden';
   $cityPage.className = 'container city-page hidden';
+  $favesPage.className = 'container faves-page hidden';
 
   $nameForm.reset();
   $cityForm.reset();
@@ -162,7 +164,16 @@ $randomBtn.addEventListener('click', e => {
   xhr.send();
 
   $homePage.className = 'container home-page hidden';
-  $namePage.className = 'container name-page hidden';
   $randomPage.className = 'container random-page';
 
+});
+
+// saved breweries list button
+
+const $savedBtn = document.querySelector('.saved-btn');
+
+$savedBtn.addEventListener('click', e => {
+
+  $homePage.className = 'container home-page hidden';
+  $favesPage.className = 'container faves-page';
 });
