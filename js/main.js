@@ -2,6 +2,7 @@ const $homePage = document.querySelector('.home-page');
 const $namePage = document.querySelector('.name-page');
 const $randomPage = document.querySelector('.random-page');
 const $cityPage = document.querySelector('.city-page');
+const $favesPage = document.querySelector('.faves-page');
 const $brName = document.querySelector('#brewery-name');
 const $brCity = document.querySelector('#city-name');
 const $nameForm = document.querySelector('.form-name');
@@ -9,26 +10,27 @@ const $cityForm = document.querySelector('.form-city');
 const $brNameList = document.querySelector('#name-list');
 const $brCityList = document.querySelector('#city-list');
 const $brRandomList = document.querySelector('#rndm-list');
+const $favesList = document.querySelector('#faves-list');
+const $addModal = document.querySelector('.add-modal');
+let $plus;
 
 const $return = document.querySelector('.return');
+
 $return.addEventListener('click', e => {
   $homePage.className = 'container home-page';
   $namePage.className = 'container name-page hidden';
   $randomPage.className = 'container random-page hidden';
   $cityPage.className = 'container city-page hidden';
+  $favesPage.className = 'container faves-page hidden';
+  $addModal.className = 'add-modal modal-container hidden';
 
   $nameForm.reset();
   $cityForm.reset();
 
-  while ($brNameList.firstChild) {
-    $brNameList.removeChild($brNameList.firstChild);
-  }
-  while ($brRandomList.firstChild) {
-    $brRandomList.removeChild($brRandomList.firstChild);
-  }
-  while ($brCityList.firstChild) {
-    $brCityList.removeChild($brCityList.firstChild);
-  }
+  $brNameList.replaceChildren();
+  $brRandomList.replaceChildren();
+  $brCityList.replaceChildren();
+  $favesList.replaceChildren();
 
 });
 
@@ -50,7 +52,6 @@ $brName.addEventListener('keydown', function (e) {
 
     $homePage.classList.add('hidden');
     $namePage.classList.remove('hidden');
-
   }
 });
 
@@ -81,6 +82,8 @@ $brCity.addEventListener('keydown', e => {
 
 function renderBrList(brewery) {
   const $li = document.createElement('li');
+
+  $li.className = brewery.id;
 
   const $div1 = document.createElement('div');
   $div1.className = 'br-header';
@@ -162,7 +165,54 @@ $randomBtn.addEventListener('click', e => {
   xhr.send();
 
   $homePage.className = 'container home-page hidden';
-  $namePage.className = 'container name-page hidden';
   $randomPage.className = 'container random-page';
 
+});
+
+// saved breweries list button
+
+const $savedBtn = document.querySelector('.saved-btn');
+
+$savedBtn.addEventListener('click', e => {
+
+  $homePage.className = 'container home-page hidden';
+  $favesPage.className = 'container faves-page';
+
+  data.entries.forEach(el => {
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://api.openbrewerydb.org/v1/breweries/' + el);
+    xhr.responseType = 'json';
+    xhr.addEventListener('load', function () {
+      $favesList.append(renderBrList(xhr.response));
+    });
+    xhr.send();
+
+  });
+});
+
+// plus buttons
+
+const $addIntro = document.querySelector('.add-intro');
+
+document.addEventListener('click', e => {
+  if (e.target.className === 'plus') {
+    $plus = e.target;
+    $addModal.classList.remove('hidden');
+    $addIntro.textContent = `Are you sure you want to add
+     ${$plus.closest('div').firstChild.textContent} to your favorites list?`;
+  }
+});
+
+const $nope = document.querySelector('.nope');
+
+$nope.addEventListener('click', e => {
+  $addModal.classList.add('hidden');
+});
+
+const $addIt = document.querySelector('.add-it');
+
+$addIt.addEventListener('click', e => {
+  data.entries.push($plus.closest('li').className);
+  $addModal.classList.add('hidden');
 });

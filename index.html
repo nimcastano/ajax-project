@@ -18,6 +18,23 @@
 </head>
 
 <body>
+  <div class="add-modal modal-container hidden">
+    <div class="add-popup">
+      <div class="row">
+        <div class="modal-col-full">
+          <h2 class="add-intro"></h2>
+        </div>
+      </div>
+      <div class="row modal-btns">
+        <div class="col-half">
+          <a class="nope">Nope!</a>
+        </div>
+        <div class="col-half">
+          <a class="add-it">Add it!</a>
+        </div>
+      </div>
+    </div>
+  </div>
   <header>
     <div class="header-background">
       <a href="#" class="return">
@@ -112,6 +129,20 @@
       </div>
       <div class="city-list brewery-list col-full">
         <ul id="city-list" class="br-list"></ul>
+      </div>
+    </div>
+    <div class="container faves-page hidden">
+      <div class="row">
+        <div id="faves-hdr" class="name-srch-hdr col-full">
+          <h2 class="faves-page-intro">Beer so Nice, Gotta go Twice</h2>
+          <p class="url-p">( Favorites List )</p>
+        </div>
+      </div>
+      <div class="row img-col" id="faves-img-col">
+        <img id="faves-image" alt="elderly couple in brewery taproom" class="deco-image" src="./images/taproom old people.jpeg">
+      </div>
+      <div class="faves-list brewery-list col-full">
+        <ul id="faves-list" class="br-list"></ul>
       </div>
     </div>
   </main>

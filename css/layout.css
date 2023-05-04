@@ -47,7 +47,7 @@ li {
 #rndm-img-col,
 #city-img-col,
 .img-col {
-  width: 55%;
+  width: 50%;
 }
 
 @media (min-width: 900px) {
@@ -76,7 +76,7 @@ li {
   .name-srch-hdr {
     position: fixed;
     top: 12%;
-    left: 5%;
+    left: 8%;
     width: 50%;
   }
 
