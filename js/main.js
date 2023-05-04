@@ -30,6 +30,19 @@ function pageTurner(xhr) {
     $pageCols.forEach(el => {
       el.classList.remove('hidden');
     });
+    $pgFwdCity.className = 'pg-fwd-city';
+    $pgFwdName.className = 'pg-fwd-name';
+  } else if (cityPageNum === 1 && xhr.length <= 14) {
+    $pageCols.forEach(el => {
+      el.className = 'page-col hidden';
+    });
+  } else if (namePageNum === 1 && xhr.length <= 14) {
+    $pageCols.forEach(el => {
+      el.className = 'page-col hidden';
+    });
+  } else if (cityPageNum !== 1 && xhr.length <= 14) {
+    $pgFwdCity.className = 'pg-fwd-city invisible';
+    $pgFwdName.className = 'pg-fwd-name invisible';
   }
 }
 
@@ -52,6 +65,13 @@ $return.addEventListener('click', e => {
   $brCityList.replaceChildren();
   $favesList.replaceChildren();
 
+  $pgBackCity.className = 'pg-back-city invisible';
+  $pgBackName.className = 'pg-back-name invisible';
+  $pgFwdCity.className = 'pg-fwd-city';
+  $pgFwdName.className = 'pg-fwd-name';
+
+  cityPageNum = null;
+  namePageNum = null;
 });
 
 function getNameList(name, pageNum) {
@@ -311,6 +331,9 @@ $pgFwdCity.addEventListener('click', e => {
 $pgBackCity.addEventListener('click', e => {
   $brCityList.replaceChildren();
   cityPageNum--;
+  if (cityPageNum === 1) {
+    $pgBackCity.classList.add('invisible');
+  }
   getCityList(citySearch, cityPageNum);
 });
 
@@ -324,5 +347,8 @@ $pgFwdName.addEventListener('click', e => {
 $pgBackName.addEventListener('click', e => {
   $brNameList.replaceChildren();
   namePageNum--;
+  if (namePageNum === 1) {
+    $pgBackName.classList.add('invisible');
+  }
   getNameList(nameSearch, namePageNum);
 });

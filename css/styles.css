@@ -170,7 +170,7 @@ p {
 .add-popup,
 .delete-popup {
   width: 301px;
-  height: 20%;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -200,7 +200,7 @@ p {
 .add-intro,
 .delete-intro {
   text-align: center;
-  margin: 0;
+  margin: 0 0 1.5rem;
   height: fit-content;
 }
 
