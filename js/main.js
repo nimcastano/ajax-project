@@ -27,18 +27,10 @@ $return.addEventListener('click', e => {
   $nameForm.reset();
   $cityForm.reset();
 
-  while ($brNameList.firstChild) {
-    $brNameList.removeChild($brNameList.firstChild);
-  }
-  while ($brRandomList.firstChild) {
-    $brRandomList.removeChild($brRandomList.firstChild);
-  }
-  while ($brCityList.firstChild) {
-    $brCityList.removeChild($brCityList.firstChild);
-  }
-  while ($favesList.firstChild) {
-    $favesList.removeChild($favesList.firstChild);
-  }
+  $brNameList.replaceChildren();
+  $brRandomList.replaceChildren();
+  $brCityList.replaceChildren();
+  $favesList.replaceChildren();
 
 });
 
