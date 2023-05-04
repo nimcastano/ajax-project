@@ -40,7 +40,8 @@ li {
   display: none;
 }
 
-.random-subheader {
+.random-subheader,
+.page {
   text-align: center;
 }
 
@@ -48,6 +49,14 @@ li {
 #city-img-col,
 .img-col {
   width: 50%;
+}
+
+.page-col {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 20%;
+  margin-bottom: 2rem;
 }
 
 @media (min-width: 900px) {
