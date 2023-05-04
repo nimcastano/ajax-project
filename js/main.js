@@ -201,10 +201,14 @@ $savedBtn.addEventListener('click', e => {
 
 // plus buttons
 
+const $addIntro = document.querySelector('.add-intro');
+
 document.addEventListener('click', e => {
   if (e.target.className === 'plus') {
     $plus = e.target;
     $addModal.classList.remove('hidden');
+    $addIntro.textContent = `Are you sure you want to add
+     ${$plus.closest('div').firstChild.textContent} to your favorites list?`;
   }
 });
 
