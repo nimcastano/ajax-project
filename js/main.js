@@ -12,7 +12,9 @@ const $brCityList = document.querySelector('#city-list');
 const $brRandomList = document.querySelector('#rndm-list');
 const $favesList = document.querySelector('#faves-list');
 const $addModal = document.querySelector('.add-modal');
+const $deleteModal = document.querySelector('.delete-modal');
 let $plus;
+let $minus;
 
 const $return = document.querySelector('.return');
 
@@ -23,6 +25,7 @@ $return.addEventListener('click', e => {
   $cityPage.className = 'container city-page hidden';
   $favesPage.className = 'container faves-page hidden';
   $addModal.className = 'add-modal modal-container hidden';
+  $deleteModal.className = 'delete-modal modal-container hidden';
 
   $nameForm.reset();
   $cityForm.reset();
@@ -80,7 +83,7 @@ $brCity.addEventListener('keydown', e => {
   }
 });
 
-function renderBrList(brewery) {
+function renderBrList(brewery, minus) {
   const $li = document.createElement('li');
 
   $li.className = brewery.id;
@@ -94,11 +97,19 @@ function renderBrList(brewery) {
   $h3.className = 'br-name';
   $h3.textContent = brewery.name;
 
-  const $plus = document.createElement('a');
-  $plus.className = 'plus';
-  $plus.textContent = '+';
+  if (!minus) {
+    const $plus = document.createElement('a');
+    $plus.className = 'plus';
+    $plus.textContent = '+';
 
-  $div1.append($h3, $plus);
+    $div1.append($h3, $plus);
+  } else {
+    const $minus = document.createElement('a');
+    $minus.className = 'minus';
+    $minus.textContent = '-';
+
+    $div1.append($h3, $minus);
+  }
 
   const $address = document.createElement('p');
   $address.className = 'description';
@@ -184,7 +195,7 @@ $savedBtn.addEventListener('click', e => {
     xhr.open('GET', 'https://api.openbrewerydb.org/v1/breweries/' + el);
     xhr.responseType = 'json';
     xhr.addEventListener('load', function () {
-      $favesList.append(renderBrList(xhr.response));
+      $favesList.append(renderBrList(xhr.response, true));
     });
     xhr.send();
 
@@ -204,10 +215,13 @@ document.addEventListener('click', e => {
   }
 });
 
-const $nope = document.querySelector('.nope');
+const $nopes = document.querySelectorAll('.nope');
 
-$nope.addEventListener('click', e => {
-  $addModal.classList.add('hidden');
+$nopes.forEach(el => {
+  el.addEventListener('click', e => {
+    $addModal.className = 'add-modal modal-container hidden';
+    $deleteModal.className = 'delete-modal modal-container hidden';
+  });
 });
 
 const $addIt = document.querySelector('.add-it');
@@ -215,4 +229,44 @@ const $addIt = document.querySelector('.add-it');
 $addIt.addEventListener('click', e => {
   data.entries.push($plus.closest('li').className);
   $addModal.classList.add('hidden');
+});
+
+// minus buttons
+
+const $deleteIntro = document.querySelector('.delete-intro');
+
+document.addEventListener('click', e => {
+  if (e.target.className === 'minus') {
+    $minus = e.target;
+    $deleteModal.classList.remove('hidden');
+    $deleteIntro.textContent = `Are you sure you want to retire
+      ${$minus.closest('div').firstChild.textContent}?`;
+  }
+});
+
+const $deleteIt = document.querySelector('.delete-it');
+
+$deleteIt.addEventListener('click', e => {
+  const $deleteThis = $minus.closest('li').className;
+  for (let i = 0; i < data.entries.length; i++) {
+    if (data.entries[i] === $deleteThis) {
+      data.entries.splice(i, 1);
+    }
+  }
+
+  $deleteModal.classList.add('hidden');
+
+  $favesList.replaceChildren();
+
+  data.entries.forEach(el => {
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://api.openbrewerydb.org/v1/breweries/' + el);
+    xhr.responseType = 'json';
+    xhr.addEventListener('load', function () {
+      $favesList.append(renderBrList(xhr.response, true));
+    });
+    xhr.send();
+
+  });
 });

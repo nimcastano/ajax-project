@@ -126,7 +126,8 @@ ul {
   height: 1rem;
 }
 
-.plus {
+.plus,
+.minus {
   font-size: 50px;
   height: 25px;
   width: 25px;
@@ -162,7 +163,8 @@ p {
   margin-bottom: 4rem;
 }
 
-.add-popup {
+.add-popup,
+.delete-popup {
   width: 301px;
   height: 20%;
   display: flex;
@@ -191,7 +193,8 @@ p {
   width: 100%;
 }
 
-.add-intro {
+.add-intro,
+.delete-intro {
   text-align: center;
   margin: 0;
   height: fit-content;
@@ -203,7 +206,8 @@ p {
   font-size: 23px;
 }
 
-.add-it {
+.add-it,
+.delete-it {
   color: #ad0000;
 }
 
