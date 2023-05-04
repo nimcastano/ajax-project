@@ -10,6 +10,7 @@ const $cityForm = document.querySelector('.form-city');
 const $brNameList = document.querySelector('#name-list');
 const $brCityList = document.querySelector('#city-list');
 const $brRandomList = document.querySelector('#rndm-list');
+const $favesList = document.querySelector('#faves-list');
 const $addModal = document.querySelector('.add-modal');
 let $plus;
 
@@ -34,6 +35,9 @@ $return.addEventListener('click', e => {
   }
   while ($brCityList.firstChild) {
     $brCityList.removeChild($brCityList.firstChild);
+  }
+  while ($favesList.firstChild) {
+    $favesList.removeChild($favesList.firstChild);
   }
 
 });
@@ -86,6 +90,8 @@ $brCity.addEventListener('keydown', e => {
 
 function renderBrList(brewery) {
   const $li = document.createElement('li');
+
+  $li.className = brewery.id;
 
   const $div1 = document.createElement('div');
   $div1.className = 'br-header';
@@ -179,6 +185,18 @@ $savedBtn.addEventListener('click', e => {
 
   $homePage.className = 'container home-page hidden';
   $favesPage.className = 'container faves-page';
+
+  data.entries.forEach(el => {
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://api.openbrewerydb.org/v1/breweries/' + el);
+    xhr.responseType = 'json';
+    xhr.addEventListener('load', function () {
+      $favesList.append(renderBrList(xhr.response));
+    });
+    xhr.send();
+
+  });
 });
 
 // plus buttons
@@ -197,11 +215,8 @@ $nope.addEventListener('click', e => {
 });
 
 const $addIt = document.querySelector('.add-it');
-const $favesList = document.querySelector('#faves-list');
 
 $addIt.addEventListener('click', e => {
-  // console.log($plus.closest('li'));
-  data.entries.push($plus.closest('li'));
-  $favesList.append($plus.closest('li'));
+  data.entries.push($plus.closest('li').className);
   $addModal.classList.add('hidden');
 });

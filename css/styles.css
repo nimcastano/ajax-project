@@ -30,7 +30,8 @@ a {
 
 .header-name:hover,
 .random-btn,
-.saved-btn {
+.saved-btn,
+a {
   cursor: pointer;
 }
 
