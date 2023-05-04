@@ -7,7 +7,7 @@ var data = {
   nextEntryId: 1
 };
 
-window.addEventListener('beforeunload', e => {
+window.addEventListener('unload', e => {
   const dataJSON = JSON.stringify(data);
   localStorage.setItem('javascript-local-storage', dataJSON);
 });

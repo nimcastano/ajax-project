@@ -13,8 +13,38 @@ const $brRandomList = document.querySelector('#rndm-list');
 const $favesList = document.querySelector('#faves-list');
 const $addModal = document.querySelector('.add-modal');
 const $deleteModal = document.querySelector('.delete-modal');
+let nameSearch;
+let citySearch;
 let $plus;
 let $minus;
+const $pageCols = document.querySelectorAll('.page-col');
+const $pgBackCity = document.querySelector('.pg-back-city');
+const $pgFwdCity = document.querySelector('.pg-fwd-city');
+let cityPageNum;
+const $pgBackName = document.querySelector('.pg-back-name');
+const $pgFwdName = document.querySelector('.pg-fwd-name');
+let namePageNum;
+
+function pageTurner(xhr) {
+  if (xhr.length > 14) {
+    $pageCols.forEach(el => {
+      el.classList.remove('hidden');
+    });
+    $pgFwdCity.className = 'pg-fwd-city';
+    $pgFwdName.className = 'pg-fwd-name';
+  } else if (cityPageNum === 1 && xhr.length <= 14) {
+    $pageCols.forEach(el => {
+      el.className = 'page-col hidden';
+    });
+  } else if (namePageNum === 1 && xhr.length <= 14) {
+    $pageCols.forEach(el => {
+      el.className = 'page-col hidden';
+    });
+  } else if (cityPageNum !== 1 && xhr.length <= 14) {
+    $pgFwdCity.className = 'pg-fwd-city invisible';
+    $pgFwdName.className = 'pg-fwd-name invisible';
+  }
+}
 
 const $return = document.querySelector('.return');
 
@@ -35,48 +65,66 @@ $return.addEventListener('click', e => {
   $brCityList.replaceChildren();
   $favesList.replaceChildren();
 
+  $pgBackCity.className = 'pg-back-city invisible';
+  $pgBackName.className = 'pg-back-name invisible';
+  $pgFwdCity.className = 'pg-fwd-city';
+  $pgFwdName.className = 'pg-fwd-name';
+
+  cityPageNum = null;
+  namePageNum = null;
 });
+
+function getNameList(name, pageNum) {
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', `https://api.openbrewerydb.org/v1/breweries?per_page=15&page=${pageNum}&by_name=${name}`);
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+    pageTurner(xhr.response);
+    for (let i = 0; i < xhr.response.length; i++) {
+      $brNameList.append(renderBrList(xhr.response[i]));
+    }
+
+  });
+  xhr.send();
+}
 
 $brName.addEventListener('keydown', function (e) {
   if (event.code === 'Enter') {
     event.preventDefault();
 
-    const nameSearch = $brName.value;
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'https://api.openbrewerydb.org/v1/breweries?by_name=' + nameSearch);
-    xhr.responseType = 'json';
-    xhr.addEventListener('load', function () {
-      for (let i = 0; i < xhr.response.length; i++) {
-        $brNameList.append(renderBrList(xhr.response[i]));
-      }
-
-    });
-    xhr.send();
+    nameSearch = $brName.value;
+    namePageNum = 1;
+    getNameList(nameSearch, namePageNum);
 
     $homePage.classList.add('hidden');
     $namePage.classList.remove('hidden');
   }
 });
 
+function getCityList(city, pageNum) {
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', `https://api.openbrewerydb.org/v1/breweries?per_page=15&page=${pageNum}&by_city=${city}`);
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+    pageTurner(xhr.response);
+    for (let i = 0; i < xhr.response.length; i++) {
+      $brCityList.append(renderBrList(xhr.response[i]));
+    }
+
+  });
+  xhr.send();
+}
+
 $brCity.addEventListener('keydown', e => {
   if (event.code === 'Enter') {
     event.preventDefault();
 
-    let citySearch = $brCity.value;
+    citySearch = $brCity.value;
     citySearch = citySearch[0].toUpperCase() + citySearch.slice(1, citySearch.length).toLowerCase();
     const $cityIntro = document.querySelector('.city-page-intro');
     $cityIntro.textContent = `Breweries in ${citySearch}`;
-
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'https://api.openbrewerydb.org/v1/breweries?per_page=10&page=1&by_city=' + citySearch);
-    xhr.responseType = 'json';
-    xhr.addEventListener('load', function () {
-      for (let i = 0; i < xhr.response.length; i++) {
-        $brCityList.append(renderBrList(xhr.response[i]));
-      }
-
-    });
-    xhr.send();
+    cityPageNum = 1;
+    getCityList(citySearch, cityPageNum);
 
     $homePage.classList.add('hidden');
     $cityPage.classList.remove('hidden');
@@ -269,4 +317,38 @@ $deleteIt.addEventListener('click', e => {
     xhr.send();
 
   });
+});
+
+// turn pages
+
+$pgFwdCity.addEventListener('click', e => {
+  $brCityList.replaceChildren();
+  cityPageNum++;
+  getCityList(citySearch, cityPageNum);
+  $pgBackCity.classList.remove('invisible');
+});
+
+$pgBackCity.addEventListener('click', e => {
+  $brCityList.replaceChildren();
+  cityPageNum--;
+  if (cityPageNum === 1) {
+    $pgBackCity.classList.add('invisible');
+  }
+  getCityList(citySearch, cityPageNum);
+});
+
+$pgFwdName.addEventListener('click', e => {
+  $brNameList.replaceChildren();
+  namePageNum++;
+  getNameList(nameSearch, namePageNum);
+  $pgBackName.classList.remove('invisible');
+});
+
+$pgBackName.addEventListener('click', e => {
+  $brNameList.replaceChildren();
+  namePageNum--;
+  if (namePageNum === 1) {
+    $pgBackName.classList.add('invisible');
+  }
+  getNameList(nameSearch, namePageNum);
 });
