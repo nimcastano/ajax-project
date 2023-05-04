@@ -211,7 +211,7 @@ document.addEventListener('click', e => {
 const $nope = document.querySelector('.nope');
 
 $nope.addEventListener('click', e => {
-  $addModal.className = 'add-modal modal-container hidden';
+  $addModal.classList.add('hidden');
 });
 
 const $addIt = document.querySelector('.add-it');

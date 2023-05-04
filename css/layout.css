@@ -47,7 +47,7 @@ li {
 #rndm-img-col,
 #city-img-col,
 .img-col {
-  width: 55%;
+  width: 50%;
 }
 
 @media (min-width: 900px) {

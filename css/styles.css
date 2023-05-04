@@ -206,10 +206,6 @@ p {
   color: #ad0000;
 }
 
-.faves-list {
-  left: 32%;
-}
-
 @media (min-width: 900px) {
   .name-header {
     font-size: 45px;
